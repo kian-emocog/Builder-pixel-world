@@ -35,6 +35,12 @@ const Index = () => {
 
   const currentGameLevel = gameLevels[currentLevel] || gameLevels[0];
 
+  console.log("Index component rendering:", {
+    currentLevel,
+    currentGameLevel,
+    selectedNumbers,
+  });
+
   const handleItemClick = (number: number) => {
     if (selectedNumbers.includes(number)) {
       // Deselect if already selected
@@ -67,7 +73,7 @@ const Index = () => {
 
   const getTipText = () => {
     if (selectedNumbers.length === 0) {
-      return "같은 수를 최대한 빨리 골라보자.";
+      return "같은 수를 최대한 ���리 골라보자.";
     } else if (selectedNumbers.length > 0) {
       return "같은 수를 최대한 빨리 골라야 정답이야.";
     }
