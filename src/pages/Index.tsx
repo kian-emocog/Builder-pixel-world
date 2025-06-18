@@ -29,29 +29,29 @@ const Index = () => {
         </div>
 
         {/* Main Game Area */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
+        <div className="flex-1 flex flex-col items-center justify-center px-6 py-4">
           {/* Game Grid */}
           <div className="w-full max-w-md">
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 place-items-center">
+            <div className="grid grid-cols-3 gap-6 sm:gap-8 lg:gap-12 place-items-center">
               {/* First row */}
-              <div className="col-start-1">
+              <div className="flex justify-center">
                 <Dice number={0} />
               </div>
-              <div className="col-start-2">
+              <div className="flex justify-center">
                 <NumberCard number={0} />
               </div>
-              <div className="col-start-3">
+              <div className="flex justify-center">
                 <Dice number={1} />
               </div>
 
               {/* Second row */}
-              <div className="col-start-1">
+              <div className="flex justify-center">
                 <Dice number={2} />
               </div>
-              <div className="col-start-2">
+              <div className="flex justify-center">
                 <Dice number={3} />
               </div>
-              <div className="col-start-3">
+              <div className="flex justify-center">
                 <Dice number={4} />
               </div>
             </div>
