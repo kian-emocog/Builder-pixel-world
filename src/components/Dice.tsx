@@ -27,6 +27,21 @@ const Dice = ({ number, selected = false, onClick }: DiceProps) => {
         dots.push(<circle key="3" cx="77" cy="23" r="12" fill="black" />);
         dots.push(<circle key="4" cx="23" cy="77" r="12" fill="black" />);
         break;
+      case 5:
+        dots.push(<circle key="1" cx="23" cy="23" r="12" fill="black" />);
+        dots.push(<circle key="2" cx="77" cy="77" r="12" fill="black" />);
+        dots.push(<circle key="3" cx="77" cy="23" r="12" fill="black" />);
+        dots.push(<circle key="4" cx="23" cy="77" r="12" fill="black" />);
+        dots.push(<circle key="5" cx="50" cy="50" r="12" fill="black" />);
+        break;
+      case 6:
+        dots.push(<circle key="1" cx="23" cy="23" r="12" fill="black" />);
+        dots.push(<circle key="2" cx="77" cy="77" r="12" fill="black" />);
+        dots.push(<circle key="3" cx="77" cy="23" r="12" fill="black" />);
+        dots.push(<circle key="4" cx="23" cy="77" r="12" fill="black" />);
+        dots.push(<circle key="5" cx="23" cy="50" r="12" fill="black" />);
+        dots.push(<circle key="6" cx="77" cy="50" r="12" fill="black" />);
+        break;
       default:
         break;
     }

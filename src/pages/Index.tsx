@@ -6,8 +6,34 @@ import NumberCard from "../components/NumberCard";
 import TipSection from "../components/TipSection";
 import ActionButtons from "../components/ActionButtons";
 
+interface GameLevel {
+  id: number;
+  diceNumbers: number[];
+  cardNumber: number;
+  targetNumbers: number[];
+}
+
+const gameLevels: GameLevel[] = [
+  {
+    id: 1,
+    diceNumbers: [0, 1, 2, 3, 4],
+    cardNumber: 0,
+    targetNumbers: [0],
+  },
+  {
+    id: 2,
+    diceNumbers: [5, 6, 2, 4, 3],
+    cardNumber: 4,
+    targetNumbers: [4],
+  },
+];
+
 const Index = () => {
+  const [currentLevel, setCurrentLevel] = useState(0);
   const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
+  const [completedLevels, setCompletedLevels] = useState<number[]>([]);
+
+  const currentGameLevel = gameLevels[currentLevel];
 
   const handleItemClick = (number: number) => {
     if (selectedNumbers.includes(number)) {
@@ -15,16 +41,40 @@ const Index = () => {
       setSelectedNumbers(selectedNumbers.filter((n) => n !== number));
     } else {
       // Select if not selected
-      setSelectedNumbers([...selectedNumbers, number]);
+      const newSelectedNumbers = [...selectedNumbers, number];
+      setSelectedNumbers(newSelectedNumbers);
+
+      // Check if level is complete
+      const targetNumbers = currentGameLevel.targetNumbers;
+      const hasAllTargets = targetNumbers.every((target) =>
+        newSelectedNumbers.includes(target),
+      );
+
+      if (hasAllTargets && newSelectedNumbers.length === targetNumbers.length) {
+        // Level completed! Move to next level after a short delay
+        setTimeout(() => {
+          setCompletedLevels([...completedLevels, currentLevel]);
+          setSelectedNumbers([]);
+          if (currentLevel + 1 < gameLevels.length) {
+            setCurrentLevel(currentLevel + 1);
+          }
+        }, 1000);
+      }
     }
   };
 
   const isSelected = (number: number) => selectedNumbers.includes(number);
 
-  const tipText =
-    selectedNumbers.length > 0
-      ? "같은 수를 최대한 빨리 골라야 정답이야."
-      : "같은 수를 최대한 빨리 골라보자.";
+  const getTipText = () => {
+    if (selectedNumbers.length === 0) {
+      return "같은 수를 최대한 빨리 골라보자.";
+    } else if (selectedNumbers.length > 0) {
+      return "같은 수를 최대한 빨리 골라야 정답이야.";
+    }
+    return "";
+  };
+
+  const tipText = getTipText();
   return (
     <div className="min-h-screen bg-happy-blue-100 flex flex-col">
       {/* Main container - responsive for all screen sizes */}
@@ -55,46 +105,56 @@ const Index = () => {
               {/* First row */}
               <div className="flex justify-center">
                 <Dice
-                  number={0}
-                  selected={isSelected(0)}
-                  onClick={() => handleItemClick(0)}
+                  number={currentGameLevel.diceNumbers[0]}
+                  selected={isSelected(currentGameLevel.diceNumbers[0])}
+                  onClick={() =>
+                    handleItemClick(currentGameLevel.diceNumbers[0])
+                  }
                 />
               </div>
               <div className="flex justify-center">
                 <NumberCard
-                  number={0}
-                  selected={isSelected(0)}
-                  onClick={() => handleItemClick(0)}
+                  number={currentGameLevel.cardNumber}
+                  selected={isSelected(currentGameLevel.cardNumber)}
+                  onClick={() => handleItemClick(currentGameLevel.cardNumber)}
                 />
               </div>
               <div className="flex justify-center">
                 <Dice
-                  number={1}
-                  selected={isSelected(1)}
-                  onClick={() => handleItemClick(1)}
+                  number={currentGameLevel.diceNumbers[1]}
+                  selected={isSelected(currentGameLevel.diceNumbers[1])}
+                  onClick={() =>
+                    handleItemClick(currentGameLevel.diceNumbers[1])
+                  }
                 />
               </div>
 
               {/* Second row */}
               <div className="flex justify-center">
                 <Dice
-                  number={2}
-                  selected={isSelected(2)}
-                  onClick={() => handleItemClick(2)}
+                  number={currentGameLevel.diceNumbers[2]}
+                  selected={isSelected(currentGameLevel.diceNumbers[2])}
+                  onClick={() =>
+                    handleItemClick(currentGameLevel.diceNumbers[2])
+                  }
                 />
               </div>
               <div className="flex justify-center">
                 <Dice
-                  number={3}
-                  selected={isSelected(3)}
-                  onClick={() => handleItemClick(3)}
+                  number={currentGameLevel.diceNumbers[3]}
+                  selected={isSelected(currentGameLevel.diceNumbers[3])}
+                  onClick={() =>
+                    handleItemClick(currentGameLevel.diceNumbers[3])
+                  }
                 />
               </div>
               <div className="flex justify-center">
                 <Dice
-                  number={4}
-                  selected={isSelected(4)}
-                  onClick={() => handleItemClick(4)}
+                  number={currentGameLevel.diceNumbers[4]}
+                  selected={isSelected(currentGameLevel.diceNumbers[4])}
+                  onClick={() =>
+                    handleItemClick(currentGameLevel.diceNumbers[4])
+                  }
                 />
               </div>
             </div>
@@ -104,6 +164,28 @@ const Index = () => {
         {/* Tip Section at bottom */}
         <div className="px-6 pb-6 mt-auto">
           <TipSection text={tipText} />
+
+          {/* Debug: Level controls - remove in production */}
+          <div className="flex justify-center mt-4 gap-2">
+            <button
+              onClick={() => {
+                setSelectedNumbers([]);
+                setCurrentLevel(0);
+              }}
+              className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm"
+            >
+              Level 1
+            </button>
+            <button
+              onClick={() => {
+                setSelectedNumbers([]);
+                setCurrentLevel(1);
+              }}
+              className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm"
+            >
+              Level 2
+            </button>
+          </div>
         </div>
       </div>
 
@@ -127,34 +209,34 @@ const Index = () => {
 
             <div className="grid grid-cols-3 gap-8 place-items-center max-w-lg mx-auto">
               <Dice
-                number={0}
-                selected={isSelected(0)}
-                onClick={() => handleItemClick(0)}
+                number={currentGameLevel.diceNumbers[0]}
+                selected={isSelected(currentGameLevel.diceNumbers[0])}
+                onClick={() => handleItemClick(currentGameLevel.diceNumbers[0])}
               />
               <NumberCard
-                number={0}
-                selected={isSelected(0)}
-                onClick={() => handleItemClick(0)}
+                number={currentGameLevel.cardNumber}
+                selected={isSelected(currentGameLevel.cardNumber)}
+                onClick={() => handleItemClick(currentGameLevel.cardNumber)}
               />
               <Dice
-                number={1}
-                selected={isSelected(1)}
-                onClick={() => handleItemClick(1)}
+                number={currentGameLevel.diceNumbers[1]}
+                selected={isSelected(currentGameLevel.diceNumbers[1])}
+                onClick={() => handleItemClick(currentGameLevel.diceNumbers[1])}
               />
               <Dice
-                number={2}
-                selected={isSelected(2)}
-                onClick={() => handleItemClick(2)}
+                number={currentGameLevel.diceNumbers[2]}
+                selected={isSelected(currentGameLevel.diceNumbers[2])}
+                onClick={() => handleItemClick(currentGameLevel.diceNumbers[2])}
               />
               <Dice
-                number={3}
-                selected={isSelected(3)}
-                onClick={() => handleItemClick(3)}
+                number={currentGameLevel.diceNumbers[3]}
+                selected={isSelected(currentGameLevel.diceNumbers[3])}
+                onClick={() => handleItemClick(currentGameLevel.diceNumbers[3])}
               />
               <Dice
-                number={4}
-                selected={isSelected(4)}
-                onClick={() => handleItemClick(4)}
+                number={currentGameLevel.diceNumbers[4]}
+                selected={isSelected(currentGameLevel.diceNumbers[4])}
+                onClick={() => handleItemClick(currentGameLevel.diceNumbers[4])}
               />
             </div>
 
