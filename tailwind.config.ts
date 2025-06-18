@@ -19,7 +19,14 @@ export default {
     },
     extend: {
       fontFamily: {
-        pop: ["ONE Mobile POP OTF", "ui-sans-serif", "system-ui", "sans-serif"],
+        pop: [
+          "ONE Mobile POP OTF",
+          "Fredoka",
+          "Comfortaa",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       colors: {
         // Game-specific colors from Figma
