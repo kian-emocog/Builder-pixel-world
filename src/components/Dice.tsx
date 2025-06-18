@@ -35,18 +35,18 @@ const Dice = ({ number, selected = false }: DiceProps) => {
 
   return (
     <div
-      className={`p-2.5 ${selected ? "bg-happy-blue-200" : ""} rounded-lg shadow-lg`}
+      className={`p-2.5 ${selected ? "bg-happy-blue-200" : ""} rounded-lg transition-all duration-200 hover:scale-105 active:scale-95`}
     >
       {number === 0 ? (
-        <div className="w-[100px] h-[100px] bg-white rounded-2xl"></div>
+        <div className="w-[80px] h-[80px] sm:w-[90px] sm:h-[90px] lg:w-[100px] lg:h-[100px] bg-white rounded-2xl shadow-lg"></div>
       ) : (
         <svg
-          width="100"
-          height="100"
+          width="80"
+          height="80"
           viewBox="0 0 100 100"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="drop-shadow-lg"
+          className="sm:w-[90px] sm:h-[90px] lg:w-[100px] lg:h-[100px] drop-shadow-lg"
         >
           <rect width="100" height="100" rx="16" fill="white" />
           {renderDots()}
