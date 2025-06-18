@@ -33,7 +33,7 @@ const Index = () => {
   const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
   const [completedLevels, setCompletedLevels] = useState<number[]>([]);
 
-  const currentGameLevel = gameLevels[currentLevel];
+  const currentGameLevel = gameLevels[currentLevel] || gameLevels[0];
 
   const handleItemClick = (number: number) => {
     if (selectedNumbers.includes(number)) {
