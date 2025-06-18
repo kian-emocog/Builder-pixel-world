@@ -1,17 +1,17 @@
 const ProgressSlider = () => {
   return (
-    <div className="flex items-center gap-3 bg-white rounded-full p-1.5 shadow-lg max-w-sm mx-auto">
+    <div className="flex items-center gap-3 bg-white rounded-full p-1.5 shadow-lg w-full max-w-xs">
       {/* Level Circle */}
       <div className="w-9 h-9 flex-shrink-0 rounded-full border border-happy-blue-900 bg-happy-blue-1100 flex items-center justify-center">
-        <span className="text-white font-pop text-base font-normal leading-none">
+        <span className="text-white font-pop text-base font-normal leading-none shadow-sm">
           12
         </span>
       </div>
 
       {/* Progress Bar */}
-      <div className="flex-1 relative">
+      <div className="flex-1 relative min-w-0">
         {/* Background bar */}
-        <div className="h-[18px] bg-gray-200 rounded-full relative">
+        <div className="h-[18px] bg-gray-200 rounded-full relative overflow-hidden">
           {/* Active progress */}
           <div className="h-[18px] w-[60px] bg-happy-blue-200 rounded-full"></div>
 
