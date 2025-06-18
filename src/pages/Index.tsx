@@ -229,29 +229,14 @@ const Index = () => {
           <div className="px-6 pb-6 mt-auto">
             <TipSection text={tipText} />
 
-            {/* Debug: Level controls - remove in production */}
-            <div className="flex justify-center mt-4 gap-2">
-              <button
-                onClick={() => {
-                  setSelectedNumbers([]);
-                  setCurrentLevel(0);
-                  updateInteractionTime();
-                }}
-                className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm"
-              >
-                Level 1
-              </button>
-              <button
-                onClick={() => {
-                  setSelectedNumbers([]);
-                  setCurrentLevel(1);
-                  updateInteractionTime();
-                }}
-                className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm"
-              >
-                Level 2
-              </button>
-            </div>
+            {/* 데모용 레벨 완료 메시지 */}
+            {completedLevels.length > 0 && (
+              <div className="flex justify-center mt-4">
+                <div className="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                  🎉 레벨 {completedLevels.length} 완료!
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
