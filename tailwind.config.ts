@@ -23,6 +23,7 @@ export default {
           "ONE Mobile POP OTF",
           "Fredoka",
           "Comfortaa",
+          "Noto Sans KR",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
