@@ -1,4 +1,10 @@
-const TipSection = () => {
+interface TipSectionProps {
+  text?: string;
+}
+
+const TipSection = ({
+  text = "같은 수를 최대한 빨리 골라보자.",
+}: TipSectionProps) => {
   return (
     <div className="flex w-full h-[52px] items-center bg-white rounded-full relative shadow-lg">
       {/* TIP section with otter */}
@@ -19,7 +25,7 @@ const TipSection = () => {
       {/* Text content */}
       <div className="flex flex-1 justify-center items-center px-4 sm:px-8 gap-2">
         <div className="text-happy-blue-1000 text-center font-pop text-base sm:text-lg lg:text-xl font-normal leading-6">
-          같은 수를 최대한 빨리 골라보자.
+          {text}
         </div>
       </div>
     </div>

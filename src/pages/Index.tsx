@@ -1,3 +1,4 @@
+import { useState } from "react";
 import StatusBar from "../components/StatusBar";
 import ProgressSlider from "../components/ProgressSlider";
 import Dice from "../components/Dice";
@@ -6,6 +7,24 @@ import TipSection from "../components/TipSection";
 import ActionButtons from "../components/ActionButtons";
 
 const Index = () => {
+  const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
+
+  const handleItemClick = (number: number) => {
+    if (selectedNumbers.includes(number)) {
+      // Deselect if already selected
+      setSelectedNumbers(selectedNumbers.filter((n) => n !== number));
+    } else {
+      // Select if not selected
+      setSelectedNumbers([...selectedNumbers, number]);
+    }
+  };
+
+  const isSelected = (number: number) => selectedNumbers.includes(number);
+
+  const tipText =
+    selectedNumbers.length > 0
+      ? "같은 수를 최대한 빨리 골라야 정답이야."
+      : "같은 수를 최대한 빨리 골라보자.";
   return (
     <div className="min-h-screen bg-happy-blue-100 flex flex-col">
       {/* Main container - responsive for all screen sizes */}
@@ -35,24 +54,48 @@ const Index = () => {
             <div className="grid grid-cols-3 gap-6 sm:gap-8 lg:gap-12 place-items-center">
               {/* First row */}
               <div className="flex justify-center">
-                <Dice number={0} />
+                <Dice
+                  number={0}
+                  selected={isSelected(0)}
+                  onClick={() => handleItemClick(0)}
+                />
               </div>
               <div className="flex justify-center">
-                <NumberCard number={0} />
+                <NumberCard
+                  number={0}
+                  selected={isSelected(0)}
+                  onClick={() => handleItemClick(0)}
+                />
               </div>
               <div className="flex justify-center">
-                <Dice number={1} />
+                <Dice
+                  number={1}
+                  selected={isSelected(1)}
+                  onClick={() => handleItemClick(1)}
+                />
               </div>
 
               {/* Second row */}
               <div className="flex justify-center">
-                <Dice number={2} />
+                <Dice
+                  number={2}
+                  selected={isSelected(2)}
+                  onClick={() => handleItemClick(2)}
+                />
               </div>
               <div className="flex justify-center">
-                <Dice number={3} />
+                <Dice
+                  number={3}
+                  selected={isSelected(3)}
+                  onClick={() => handleItemClick(3)}
+                />
               </div>
               <div className="flex justify-center">
-                <Dice number={4} />
+                <Dice
+                  number={4}
+                  selected={isSelected(4)}
+                  onClick={() => handleItemClick(4)}
+                />
               </div>
             </div>
           </div>
@@ -60,7 +103,7 @@ const Index = () => {
 
         {/* Tip Section at bottom */}
         <div className="px-6 pb-6 mt-auto">
-          <TipSection />
+          <TipSection text={tipText} />
         </div>
       </div>
 
@@ -83,16 +126,40 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-3 gap-8 place-items-center max-w-lg mx-auto">
-              <Dice number={0} />
-              <NumberCard number={0} />
-              <Dice number={1} />
-              <Dice number={2} />
-              <Dice number={3} />
-              <Dice number={4} />
+              <Dice
+                number={0}
+                selected={isSelected(0)}
+                onClick={() => handleItemClick(0)}
+              />
+              <NumberCard
+                number={0}
+                selected={isSelected(0)}
+                onClick={() => handleItemClick(0)}
+              />
+              <Dice
+                number={1}
+                selected={isSelected(1)}
+                onClick={() => handleItemClick(1)}
+              />
+              <Dice
+                number={2}
+                selected={isSelected(2)}
+                onClick={() => handleItemClick(2)}
+              />
+              <Dice
+                number={3}
+                selected={isSelected(3)}
+                onClick={() => handleItemClick(3)}
+              />
+              <Dice
+                number={4}
+                selected={isSelected(4)}
+                onClick={() => handleItemClick(4)}
+              />
             </div>
 
             <div className="flex justify-center">
-              <TipSection />
+              <TipSection text={tipText} />
             </div>
           </div>
         </div>
