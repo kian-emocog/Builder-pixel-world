@@ -7,10 +7,16 @@ const TimerPopup = ({ isVisible, onClose }: TimerPopupProps) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/20"
+      onClick={onClose}
+    >
       <div className="flex flex-col items-center justify-center gap-7 px-6">
         {/* Popup container */}
-        <div className="flex p-2.5 flex-col justify-center items-center rounded-full bg-white shadow-lg">
+        <div
+          className="flex p-2.5 flex-col justify-center items-center rounded-full bg-white shadow-lg"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="flex h-[116px] py-7 px-11 justify-center items-center gap-5 rounded-full border-4 border-dashed border-red-600 bg-white">
             {/* Timer/Clock icon */}
             <svg
