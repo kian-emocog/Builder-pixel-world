@@ -1,9 +1,28 @@
+import { useEffect } from "react";
+
 interface TimerPopupProps {
   isVisible: boolean;
   onClose: () => void;
 }
 
 const TimerPopup = ({ isVisible, onClose }: TimerPopupProps) => {
+  // ESC 키로 팝업 닫기
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (isVisible) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isVisible, onClose]);
+
   if (!isVisible) return null;
 
   return (

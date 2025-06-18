@@ -60,11 +60,11 @@ const Index = () => {
       ) {
         setShowTimerPopup(true);
 
-        // 2초 후 팝업 자동 닫기
+        // 1.5초 후 팝업 자동 닫기
         popupTimeoutRef.current = setTimeout(() => {
           setShowTimerPopup(false);
           updateInteractionTime(); // 팝업 닫은 후 타이머 리셋
-        }, 2000);
+        }, 1500);
       }
     };
 
