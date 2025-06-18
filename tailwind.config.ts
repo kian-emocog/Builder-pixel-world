@@ -18,7 +18,29 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        pop: ["ONE Mobile POP OTF", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
       colors: {
+        // Game-specific colors from Figma
+        "happy-blue": {
+          100: "#E3EAF7",
+          200: "#D2DDF3",
+          300: "#B2C5EB",
+          800: "#3060C0",
+          900: "#2850A0",
+          1000: "#214183",
+          1100: "#1B356A",
+          1200: "#172D59",
+          1300: "#122345",
+        },
+        "sunset-red": {
+          200: "#FFD6DF",
+          400: "#FF99AF",
+        },
+        "sun-orange": {
+          500: "#FFCA64",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
